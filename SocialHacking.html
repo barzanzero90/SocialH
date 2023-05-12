@@ -1,0 +1,84 @@
+<html>
+<body> 
+
+<center>
+<h1>Hello, Welcome To Our Website!</h1>
+<p>We have some questions for you, hope you help us!, with your answers</p>
+<b>So let's start</b>
+
+<p>The <b>First</b> question is <i>What is your full name ?</i></p>
+<input type="text" required id="fullname" placeholder="Answer Here">
+
+<p>The <b>Second</b> question is <i>When were you born ?</i></p>
+<input type="date" required id="birthday" placeholder="Answer Here">
+
+<p>The <b>Third</b> question is <i>What is your favourite color ?</i></p>
+<input type="text" required id="color" placeholder="Answer Here">
+
+<p>The <b>Fourth</b> question is <i>What is your favourite car ?</i></p>
+<input type="text" required id="car" placeholder="Answer Here">
+
+<p>The <b>Fifth</b> question is <i>What is your favourite car color ?</i></p>
+<input type="text" required id="carcolor" placeholder="Answer Here">
+
+<p>The <b>Sixth</b> question is <i>What is your favourite food ?</i></p>
+<input type="text" required id="food" placeholder="Answer Here">
+
+<p>The <b>Seventh</b> question is <i>What is your favourite fruit ?</i></p>
+<input type="text" required id="fruit" placeholder="Answer Here">
+<br> <br>
+<button onclick="submitData()">Submit</button>
+<br><br>
+</center>
+
+<script src="https://www.gstatic.com/firebasejs/8.3.3/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.3.3/firebase-database.js"></script>
+
+<script>
+var firebaseConfig = {
+  apiKey: "AIzaSyBsZTQYLlj3mn_XDHg799v5ICfQwr-w3Z4",
+  authDomain: "javascript-34b03.firebaseapp.com",
+  databaseURL: "https://javascript-34b03-default-rtdb.firebaseio.com",
+  projectId: "javascript-34b03",
+  storageBucket: "javascript-34b03.appspot.com",
+  messagingSenderId: "1084186770316",
+  appId: "1:1084186770316:web:444f753692aef9b39cf4a9",
+  measurementId: "G-8VFF285WQW"
+};
+firebase.initializeApp(firebaseConfig);
+
+// Get a reference to the database service
+var database = firebase.database();
+
+
+
+function submitData() {
+  // Get form input fields
+  var fullname = document.getElementById('fullname').value;
+  var birthday = document.getElementById('birthday').value;
+  var color = document.getElementById('color').value;
+  var car = document.getElementById('car').value;
+  var carcolor = document.getElementById('carcolor').value;
+  var food = document.getElementById('food').value;
+  var fruit = document.getElementById('fruit').value;
+
+  // Create JavaScript object with form data
+  var userData = {
+    fullname: fullname,
+    birthday: birthday,
+    color: color,
+    car: car,
+    carcolor: carcolor,
+    food: food,
+    fruit: fruit,
+  };
+
+  // Get reference to the Firebase database and add data as a new child
+  var database = firebase.database().ref('user_infos');
+  database.push(userData);
+}
+
+</script>
+
+</body>
+</html>
